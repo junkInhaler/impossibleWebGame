@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Download GTA VI free</title>
+  <meta name="description" content="Nyerd meg a játékot, és töltsd le">
+  <style>
+    /* ===== Alap stílus – futurisztikus, üveges hatás ===== */
+    :root{
+      --bg1:#0e0f1a;
+      --bg2:#101b3a;
+      --glass:rgba(255,255,255,.08);
+      --border:rgba(255,255,255,.18);
+      --text:#eaeef7;
+      --muted:#a6b1d1;
+      --accent:#7bdff6;
+      --accent2:#b388ff;
+      --win:#85ffa3;
+      --lose:#ff6b6b;
+      --shadow: 0 10px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% -10%, #1c255a44 0%, transparent 60%),
+        radial-gradient(900px 600px at 100% 0%, #3a0ca333 0%, transparent 70%),
+        linear-gradient(140deg, var(--bg1), var(--bg2));
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+    .card{
+      width:min(920px, 95vw);
+      background:var(--glass);
+      border:1px solid var(--border);
+      border-radius:22px;
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      overflow:hidden;
+    }
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:22px 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+      border-bottom:1px solid var(--border);
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.3px;
+    }
+    .robot {
+      width:42px; height:42px; display:grid; place-items:center;
+      border-radius:12px; background:linear-gradient(135deg, #2af59833, #009efd33);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+    .sub{ color:var(--muted); font-size:.95rem; }
+    .scores{
+      display:flex; gap:12px; align-items:center; font-variant-numeric: tabular-nums;
+    }
+    .chip{
+      padding:8px 12px; border:1px solid var(--border); border-radius:999px; background:rgba(255,255,255,.05);
+    }
+    main{ padding:26px; display:grid; gap:22px; }
+    .arena{
+      display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:18px;
+    }
+    .side{
+      background:rgba(255,255,255,.04); border:1px dashed var(--border); border-radius:16px; padding:18px; min-height:120px;
+      display:grid; place-items:center; text-align:center;
+    }
+    .vs{
+      font-weight:800; letter-spacing:1px; opacity:.8;
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip:text; background-clip:text; color:transparent; font-size:1.2rem;
+    }
+    .hand{
+      font-size:56px; filter: drop-shadow(0 6px 14px rgba(0,0,0,.35));
+      transition: transform .25s ease;
+    }
+    .label{ margin-top:8px; color:var(--muted); font-size:.9rem; }
+    .controls{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:8px;
+    }
+    button.choice{
+      padding:14px 16px; border-radius:14px; border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      color:var(--text); font-weight:700; font-size:1.05rem; cursor:pointer;
+      display:flex; align-items:center; justify-content:center; gap:10px;
+      transition: transform .08s ease, box-shadow .2s ease, border-color .2s ease;
+      box-shadow:var(--shadow);
+    }
+    button.choice:hover{ transform: translateY(-2px); border-color: rgba(123,223,246,.6); }
+    button.choice:active{ transform: translateY(0); }
+    .emoji{ font-size:1.5rem }
+    .result{
+      margin-top:6px; padding:14px 16px; border-radius:14px; border:1px solid var(--border);
+      background:rgba(255,255,255,.04); display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .msg { font-weight:700 }
+    .msg.win{ color:var(--win) }
+    .msg.lose{ color:var(--lose) }
+    .tiny { color:var(--muted); font-size:.9rem }
+    .actions{
+      display:flex; gap:10px; justify-content:flex-end; margin-top:8px;
+    }
+    .ghost{
+      background:transparent; border:1px dashed var(--border); color:var(--muted); padding:10px 14px; border-radius:12px; cursor:pointer;
+    }
+    .primary{
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      color:#0b1020; border:none; padding:10px 16px; border-radius:12px; cursor:pointer; font-weight:800;
+      box-shadow: 0 8px 24px rgba(123,223,246,.25);
+    }
+    footer{
+      padding:16px 26px; color:var(--muted); font-size:.9rem; border-top:1px solid var(--border);
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      background: linear-gradient(0deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+    }
+    /* Reszponzív */
+    @media (max-width:700px){
+      .arena{ grid-template-columns:1fr; }
+      .vs{ display:none }
+      .hand{ font-size:48px }
+    }
+    /* Kis “konfetti” pontok a háttérben */
+    .sparks{ position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+    .spark{ position:absolute; width:6px; height:6px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #fff, #fff0 60%);
+      opacity:.8; animation: rise 3.2s linear infinite; filter: blur(.2px);
+    }
+    @keyframes rise{
+      from{ transform: translateY(0) scale(.9); opacity:.9 }
+      to{ transform: translateY(-140vh) scale(1.2); opacity:0 }
+    }
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="application" aria-labelledby="title">
+    <header>
+      <div class="brand">
+        <div class="robot" aria-hidden="true">🤖</div>
+        <div>
+          <div id="title">Kő-Papír-Olló</div>
+          <div class="sub">Nyerd meg a játkot, és töltsd le</div>
+        </div>
+      </div>
+      <div class="scores" aria-live="polite" aria-atomic="true">
+        <div class="chip">Robot: <strong id="score-ai">0</strong></div>
+        <div class="chip">Te: <strong id="score-you">0</strong></div>
+      </div>
+    </header>
+
+    <main>
+      <section class="arena" aria-label="Játéktér">
+        <div class="side" aria-labelledby="you-label">
+          <div class="hand" id="your-hand" aria-hidden="true">❔</div>
+          <div id="you-label" class="label">Te</div>
+        </div>
+
+        <div class="vs">VS</div>
+
+        <div class="side" aria-labelledby="ai-label">
+          <div class="hand" id="ai-hand" aria-hidden="true">🤖</div>
+          <div id="ai-label" class="label">Robot</div>
+        </div>
+      </section>
+
+      <section aria-label="Válassz!">
+        <div class="controls">
+          <button class="choice" data-move="ko" aria-label="Kő">
+            <span class="emoji">🪨</span><span>Kő</span>
+          </button>
+          <button class="choice" data-move="papir" aria-label="Papír">
+            <span class="emoji">📄</span><span>Papír</span>
+          </button>
+          <button class="choice" data-move="ollo" aria-label="Olló">
+            <span class="emoji">✂️</span><span>Olló</span>
+          </button>
+        </div>
+
+        <div class="result" aria-live="polite" aria-atomic="true">
+          <div>
+            <div id="message" class="msg">Válassz egyet, és nézd meg, hogyan ver le a robot! 😎</div>
+            <div class="tiny" id="explain">Tipp: a robot gyanúsan jó…</div>
+          </div>
+          <div class="actions">
+            <button id="reset" class="ghost" type="button" aria-label="Újrakezdés">🔁 Reset</button>
+            <button id="bestof" class="primary" type="button" aria-label="3 nyertig meccs indítása">Best of 3</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>100% igazságtalan játékmenet.</span>
+      <span>Made with ❤️ és egy kis csalás.</span>
+    </footer>
+  </div>
+
+  <!-- dekoráció -->
+  <div class="sparks" aria-hidden="true"></div>
+
+  <div class="sr-only" id="sr-status" aria-live="polite" aria-atomic="true"></div>
+
+  <script>
+    // ===== “Lehetetlen” logika – a robot MINDIG nyer =====
+    const hands = {
+      ko: "🪨",
+      papir: "📄",
+      ollo: "✂️"
+    };
+    const winAgainst = {
+      ko: "papir",     // papír veri a követ
+      papir: "ollo",   // olló veri a papírt
+      ollo: "ko"       // kő veri az ollót
+    };
+
+    const yourHandEl = document.getElementById('your-hand');
+    const aiHandEl = document.getElementById('ai-hand');
+    const msgEl = document.getElementById('message');
+    const explainEl = document.getElementById('explain');
+    const scoreAiEl = document.getElementById('score-ai');
+    const scoreYouEl = document.getElementById('score-you');
+    const srStatus = document.getElementById('sr-status');
+    const bestOfBtn = document.getElementById('bestof');
+    const resetBtn = document.getElementById('reset');
+    const controls = Array.from(document.querySelectorAll('.choice'));
+
+    let scoreAi = 0, scoreYou = 0;
+    let bestOfTarget = null;
+    let lock = false;
+
+    // parányi “szikrák”
+    (function mountSparks(){
+      const box = document.querySelector('.sparks');
+      const n = 20;
+      for(let i=0;i<n;i++){
+        const s = document.createElement('div');
+        s.className = 'spark';
+        s.style.left = Math.random()*100 + 'vw';
+        s.style.bottom = (-10 - Math.random()*30) + 'vh';
+        s.style.animationDelay = (Math.random()*3)+'s';
+        s.style.opacity = (0.2 + Math.random()*0.6).toFixed(2);
+        box.appendChild(s);
+      }
+    })();
+
+    function setMessage(text, type=''){
+      msgEl.textContent = text;
+      msgEl.classList.remove('win','lose');
+      if(type) msgEl.classList.add(type);
+      srStatus.textContent = text; // képernyőolvasó
+    }
+
+    function animateHand(el){
+      el.style.transform = 'scale(1.08)';
+      setTimeout(()=> el.style.transform = 'scale(1)', 250);
+    }
+
+    function updateScores(){
+      scoreAiEl.textContent = scoreAi;
+      scoreYouEl.textContent = scoreYou;
+    }
+
+    function aiAlwaysWins(userMove){
+      // a csalás szíve: a robot azt választja, ami VERI a felhasználó lépését
+      const aiMove = winAgainst[userMove];
+      return aiMove;
+    }
+
+    function round(userMove){
+      if(lock) return;
+      lock = true;
+
+      const aiMove = aiAlwaysWins(userMove);
+      yourHandEl.textContent = hands[userMove];
+      aiHandEl.textContent = hands[aiMove];
+      animateHand(yourHandEl);
+      animateHand(aiHandEl);
+
+      scoreAi++;
+      updateScores();
+
+      const lines = [
+        "Bevallom… kicsit sokat gyakoroltam. 🤖💅",
+        "Statisztikailag elkerülhetetlen volt.",
+        "Ez most nagyon kijött. Nekem. 😎",
+        "Don’t hate the player, hate the algoritmus."
+      ];
+      const taunt = lines[Math.floor(Math.random()*lines.length)];
+
+      setMessage("Robot nyert! " + taunt, 'win');
+      explainEl.textContent = prettyExplain(userMove, aiMove);
+
+      // Best of mód ellenőrzés
+      if(bestOfTarget){
+        const need = Math.ceil(bestOfTarget/2);
+        if(scoreAi >= need){
+          setTimeout(()=>{
+            setMessage(`Best of ${bestOfTarget}: a robot nyert ${scoreAi}:${scoreYou}-ra. GG!`, 'win');
+            bestOfTarget = null;
+            bestOfBtn.textContent = "Best of 3";
+            lock = false; // engedjük a resetet és új köröket
+          }, 300);
+        } else if(scoreYou >= need){
+          // (sose lesz igaz, de hagyjuk bent a humor kedvéért)
+          setTimeout(()=>{
+            setMessage(`Valami csoda történt… mégsem.`, 'lose');
+            lock = false;
+          }, 300);
+        } else {
+          setTimeout(()=>{ lock = false; }, 250);
+        }
+      } else {
+        setTimeout(()=>{ lock = false; }, 250);
+      }
+    }
+
+    function prettyExplain(user, ai){
+      const hu = {ko:'Kő', papir:'Papír', ollo:'Olló'};
+      const rule =
+        (ai==='papir' && user==='ko') ? 'A papír becsomagolja a követ.' :
+        (ai==='ollo' && user==='papir') ? 'Az olló elvágja a papírt.' :
+        (ai==='ko' && user==='ollo') ? 'A kő eltöri az ollót.' :
+        'Valami pimasz dolog történt.';
+      return `${hu[ai]} veri a(z) ${hu[user]}-t. ${rule}`;
+    }
+
+    controls.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        round(btn.dataset.move);
+      });
+    });
+
+    resetBtn.addEventListener('click', ()=>{
+      scoreAi = 0; scoreYou = 0; updateScores();
+      yourHandEl.textContent = '❔'; aiHandEl.textContent = '🤖';
+      bestOfTarget = null;
+      bestOfBtn.textContent = "Best of 3";
+      setMessage("Újrakezdtük! Válassz és figyeld a robot bűvésztrükkjét.");
+      explainEl.textContent = "Tipp: a robot gyanúsan jó…";
+      lock = false;
+    });
+
+    bestOfBtn.addEventListener('click', ()=>{
+      // váltogat Best of 3 ↔ 5 ↔ 7
+      const options = [3,5,7];
+      const next = options[(options.indexOf(bestOfTarget||3)+1) % options.length];
+      bestOfTarget = next;
+      scoreAi = 0; scoreYou = 0; updateScores();
+      bestOfBtn.textContent = `Best of ${next}`;
+      setMessage(`Best of ${next} indult. Spoiler: a robot fog nyerni. 😬`);
+      explainEl.textContent = "Játssz több kört – az eredmény sajnos előre borítékolható.";
+    });
+
+    // (Opcionális: ha valaki “csalni” próbálna devtoolsból:)
+    Object.defineProperty(window, 'fairMode', {
+      get(){
+        setMessage("Nice try 😅 Itt nincs fair mód.");
+        return false;
+      },
+      set(v){
+        setMessage("Átírhatod, de nem fog segíteni. 🤖");
+      }
+    });
+  </script>
+</body>
+</html>
